@@ -1,18 +1,6 @@
 import type { Metadata } from "next";
-import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
-import Header from "@/components/layout/Header";
-import Footer from "@/components/layout/Footer";
-
-const geistSans = Geist({
-  variable: "--font-geist-sans",
-  subsets: ["latin"],
-});
-
-const geistMono = Geist_Mono({
-  variable: "--font-geist-mono",
-  subsets: ["latin"],
-});
+import { bodoniModa, italian, lacquer, notoSerifDisplay } from "@/lib/fonts";
 
 export const metadata: Metadata = {
   title: "Create Next App",
@@ -27,11 +15,9 @@ export default function RootLayout({
   return (
     <html lang="en" className="summer">
       <body
-        className={`${geistSans.variable} ${geistMono.variable} antialiased`}
+        className={` ${lacquer.variable} ${notoSerifDisplay.variable} ${bodoniModa.variable} ${italian.variable} antialiased bg-[#f9f9f9]`}
       >
-        <Header />
-        {children}
-        <Footer />
+        <div className="w-full h-screen">{children}</div>
       </body>
     </html>
   );
