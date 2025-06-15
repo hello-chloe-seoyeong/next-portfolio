@@ -15,19 +15,14 @@ import { zodResolver } from "@hookform/resolvers/zod";
 import { Textarea } from "@/components/ui/textarea";
 import { useCardOpenStore } from "@/stores/cardOpen.store";
 import { cn } from "@/lib/utils";
+import { AnimatedDivProps } from "@/types/motion";
 
 const motionVariants = {
   hidden: { opacity: 0, backgroundColor: "rgb(255, 255, 255)" },
   visible: { opacity: 1 },
 };
 
-const Contact = ({
-  layoutId,
-  className,
-}: {
-  layoutId: string;
-  className: string;
-}) => {
+const Contact: React.FC<AnimatedDivProps> = ({ className }) => {
   const { setCardId } = useCardOpenStore();
   const form = useForm<contactFormData>({
     resolver: zodResolver(contactFormSchema),
@@ -61,8 +56,8 @@ const Contact = ({
       variants={motionVariants}
       initial="hidden"
       animate="visible"
-      layoutId={layoutId}
-      className={className}
+      // layoutId={layoutId}
+      className={cn([className, "h-full font-noto-serif-display"])}
     >
       <div className="h-full p-8">
         <Form {...form}>
