@@ -1,11 +1,28 @@
 import {
   Geist,
   Geist_Mono,
-  Lacquer,
   Noto_Serif_Display,
   Bodoni_Moda,
   Italiana,
+  Lexend,
+  Red_Hat_Display,
+  Montserrat,
 } from "next/font/google";
+
+export const lexend = Lexend({
+  variable: "--font-lexend",
+  subsets: ["latin"],
+});
+
+export const redHatDisplay = Red_Hat_Display({
+  variable: "--font-red-hat-display",
+  subsets: ["latin"],
+});
+
+export const montserrat = Montserrat({
+  variable: "--font-montserrat",
+  subsets: ["latin"],
+});
 
 export const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -14,12 +31,6 @@ export const geistSans = Geist({
 
 export const geistMono = Geist_Mono({
   variable: "--font-geist-mono",
-  subsets: ["latin"],
-});
-
-export const lacquer = Lacquer({
-  weight: "400",
-  variable: "--font-lacquer",
   subsets: ["latin"],
 });
 

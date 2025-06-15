@@ -1,6 +1,6 @@
 import type { Metadata } from "next";
 import "./globals.css";
-import { bodoniModa, italian, lacquer, notoSerifDisplay } from "@/lib/fonts";
+import { bodoniModa, italian, notoSerifDisplay } from "@/lib/fonts";
 
 export const metadata: Metadata = {
   title: "Create Next App",
@@ -15,7 +15,7 @@ export default function RootLayout({
   return (
     <html lang="en" className="summer">
       <body
-        className={` ${lacquer.variable} ${notoSerifDisplay.variable} ${bodoniModa.variable} ${italian.variable} antialiased bg-[#f9f9f9]`}
+        className={`${notoSerifDisplay.variable} ${bodoniModa.variable} ${italian.variable} antialiased bg-[#f9f9f9]`}
       >
         <div className="w-full h-screen">{children}</div>
       </body>
