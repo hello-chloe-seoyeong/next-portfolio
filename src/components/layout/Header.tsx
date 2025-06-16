@@ -1,6 +1,5 @@
 "use client";
-//
-import { RiFontSans, RiFontSansSerif } from "react-icons/ri";
+
 import { IoColorPaletteOutline } from "react-icons/io5";
 import { Button } from "@/components/ui/button";
 import { usePaletteStore } from "@/stores/theme.store";
