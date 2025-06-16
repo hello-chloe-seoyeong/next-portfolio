@@ -42,7 +42,7 @@ const Envelope = () => {
   }, []);
   return (
     <motion.div
-      className="relative w-1/2 aspect-[2/3] md:aspect-[3/2] rounded-xs overflow-hidden shadow-lg"
+      className="relative w-1/2 max-w-2xl aspect-[2/3] md:aspect-[3/2] rounded-xs overflow-hidden bg-white shadow-lg"
       ref={ref}
       initial="initial"
       animate="animate"

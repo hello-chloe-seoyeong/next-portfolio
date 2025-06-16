@@ -42,7 +42,7 @@ const MainContainer = () => {
   useEffect(() => {}, [palette]);
 
   return (
-    <motion.div className="w-screen min-h-screen items-center justify-center flex py-30 px-5 ">
+    <motion.div className="max-w-7xl w-screen min-h-screen items-center justify-center flex py-30 px-5 ">
       <motion.div className="grid grid-cols-2 w-2/3 gap-5">
         {cards.map((card, index) => {
           const isHovered = isHover === index;
