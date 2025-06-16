@@ -1,13 +1,16 @@
-import Header from "@/components/layout/Header";
-import MainContainer from "@/components/main/MainContainer";
+import Envelope from "@/components/envelope/Envelope";
+import { Metadata } from "next";
 
-const Homepage = () => {
+export const metadata: Metadata = {
+  title: "Open it",
+};
+
+const Home = () => {
   return (
-    <>
-      <Header />
-      <MainContainer />
-    </>
+    <div className="w-full h-full flex items-center justify-center">
+      <Envelope />
+    </div>
   );
 };
 
-export default Homepage;
+export default Home;
