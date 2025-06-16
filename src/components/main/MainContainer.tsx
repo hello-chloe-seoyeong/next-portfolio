@@ -3,13 +3,17 @@
 import { AnimatePresence } from "motion/react";
 import * as motion from "motion/react-client";
 import About from "../about/About";
-// import { AuroraText } from "../magicui/aurora-text";s
 import { PostCard } from "@/types/postcard";
 import Contact from "@/components/contact/Contact";
 import { useCardOpenStore } from "@/stores/cardOpen.store";
 import Overlay from "@/components/postcard/Overlay";
 import Works from "@/components/works/Works";
 import Postcard from "@/components/postcard/Postcard";
+import { cn } from "@/lib/utils";
+import { useEffect, useState } from "react";
+import TechStacks from "@/components/techStacks/TechStacks";
+import { colorchips } from "@/components/postcard/colorChips";
+import { usePaletteStore } from "@/stores/theme.store";
 
 const cards: PostCard[] = [
   {
@@ -32,27 +36,68 @@ const cards: PostCard[] = [
 
 const MainContainer = () => {
   const { cardId, setCardId } = useCardOpenStore();
+  const [isHover, setIsHover] = useState<number | null>(null);
+  const { palette } = usePaletteStore((state) => state);
+
+  useEffect(() => {}, [palette]);
+
   return (
-    <div className="w-screen min-h-screen items-center justify-center flex py-30">
-      <motion.div className="grid grid-cols-2 min-w-1/2 gap-5">
-        {cards.map((card) => (
-          <motion.div
-            key={card.title}
-            className={`h-48 w-80 relative`}
-            layoutId={card.title}
-            onClick={() => setCardId(card.title)}
-          >
-            <div className="relative z-10 shadow-md p-3 bg-white h-full">
-              <div
-                className={`text-4xl md:text-3xl lg:text-7xl flex justify-center items-center h-full font-[family-name:var(--font-italian)]`}
-              >
-                {card.title}
+    <motion.div className="w-screen min-h-screen items-center justify-center flex py-30 px-5 ">
+      <motion.div className="grid grid-cols-2 w-2/3 gap-5">
+        {cards.map((card, index) => {
+          const isHovered = isHover === index;
+
+          const originX = isHovered ? (index % 2 === 0 ? 1 : 0) : 0.5;
+          const originY = isHovered
+            ? index === 0 || index === 1
+              ? 1
+              : 0
+            : 0.5;
+
+          return (
+            <motion.div
+              style={{ originX, originY }}
+              key={card.title}
+              className={`w-full aspect-[2/3] md:aspect-[3/2] relative `}
+              layoutId={card.title}
+              onClick={() => setCardId(card.title)}
+              initial={false}
+              animate={{
+                background: colorchips[palette][index].color,
+                color:
+                  colorchips[palette][index].class === "is-light"
+                    ? "#191919"
+                    : "#fff",
+              }}
+              whileHover={{
+                scale: 1.1,
+                background: `linear-gradient(180deg, ${
+                  colorchips[palette][index].color
+                } 0%, ${colorchips[palette][index + 1].color} 100%)`,
+                transition: { duration: 0.3 },
+              }}
+              onMouseEnter={() => setIsHover(index)}
+              onMouseLeave={() => setIsHover(null)}
+            >
+              <div className="relative z-10 shadow-md p-3 h-full">
+                <motion.div
+                  className={cn(
+                    "text-4xl md:text-6xl lg:text-7xl flex flex-col justify-start items-start md:justify-center md:items-center h-full font-italian",
+                    index === 0
+                      ? "justify-end items-end"
+                      : index === 1
+                      ? "justify-end"
+                      : index === 2
+                      ? "justify-start items-end"
+                      : "justify-start items-start"
+                  )}
+                >
+                  <span>{card.title}</span>
+                </motion.div>
               </div>
-            </div>
-            <div className="absolute -top-2 -left-2 w-[50px] h-[50px] border-t-[25px] border-l-[25px] border-[#f9f9f9] border-b-[25px] border-r-[25px] border-b-transparent border-r-transparent  z-20"></div>
-            <div className="absolute -bottom-2 -right-2 w-[50px] h-[50px] border-b-[25px] border-r-[25px] border-[#f9f9f9] border-t-[25px] border-l-[25px] border-t-transparent border-l-transparent  z-20"></div>
-          </motion.div>
-        ))}
+            </motion.div>
+          );
+        })}
       </motion.div>
       <AnimatePresence>
         {cardId ? (
@@ -60,13 +105,13 @@ const MainContainer = () => {
             <Postcard postCardTitle={cardId} layoutId={cardId}>
               {cardId === "About" && <About />}
               {cardId === "Works" && <Works />}
-              {/* {cardId === "Skills" && <Skills/>} */}
+              {cardId === "Skills" && <TechStacks />}
               {cardId === "Contact" && <Contact />}
             </Postcard>
           </Overlay>
         ) : null}
       </AnimatePresence>
-    </div>
+    </motion.div>
   );
 };
 

@@ -3,7 +3,7 @@ import * as motion from "motion/react-client";
 
 const overlay = {
   hidden: { backgroundColor: "rgba(0, 0, 0, 0)" },
-  visible: { backgroundColor: "rgba(0, 0, 0, 0.5)" },
+  visible: { backgroundColor: "rgba(0, 0, 0, 0.2)" },
   exit: { backgroundColor: "rgba(0, 0, 0, 0)" },
 };
 

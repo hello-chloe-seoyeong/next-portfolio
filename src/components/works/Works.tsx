@@ -8,6 +8,7 @@ import { AnimatePresence, Variants, wrap } from "motion/react";
 import * as motion from "motion/react-client";
 import Image from "next/image";
 import { useState } from "react";
+import { FaArrowLeft, FaArrowRight } from "react-icons/fa6";
 
 const worksVariants: Variants = {
   start: (direction: 1 | -1) => ({ x: direction * 300, opacity: 0 }),
@@ -37,11 +38,11 @@ const Works: React.FC<AnimatedDivProps> = ({ className }) => {
     <motion.div
       className={cn([
         className,
-        "flex gap-5 justify-center items-center h-full",
+        "flex gap-5 justify-center items-center h-full font-red-hat-display overflow-hidden",
       ])}
     >
       <motion.button onClick={() => setSlide(-1)} style={button}>
-        &larr;
+        <FaArrowLeft />
       </motion.button>
 
       <AnimatePresence custom={direction} mode="wait">
@@ -63,13 +64,13 @@ const Works: React.FC<AnimatedDivProps> = ({ className }) => {
             />
           </div>
           <a
-            className="text-2xl font-bold"
+            className="text-2xl font-bold text-center"
             href={works[selectedItem - 1].link}
             target="_blank"
           >
             {works[selectedItem - 1].title}
           </a>
-          <p className="text-muted-foreground">
+          <p className="text-muted-foreground text-center">
             {works[selectedItem - 1].position}
           </p>
           <div className="flex gap-2 flex-wrap justify-center mt-5">
@@ -80,7 +81,7 @@ const Works: React.FC<AnimatedDivProps> = ({ className }) => {
         </motion.div>
       </AnimatePresence>
       <motion.button onClick={() => setSlide(1)} style={button}>
-        &rarr;
+        <FaArrowRight />
       </motion.button>
     </motion.div>
   );
@@ -94,7 +95,8 @@ const workBox: React.CSSProperties = {
   flexDirection: "column",
   justifyContent: "center",
   alignItems: "center",
-  border: "1px solid #191919",
+  // border: "1px solid #191919",
+  boxShadow: "0 0 10px rgba(0, 0, 0, 0.1)",
   width: "75%",
   height: "75%",
   padding: "24px",
@@ -105,6 +107,8 @@ const button: React.CSSProperties = {
   height: 50,
   fontSize: "20px",
   fontWeight: "bold",
-  boxShadow: "0 0 10px rgba(0, 0, 0, 0.1)",
-  border: "1px solid #191919",
+  border: "1px solid #dedede",
+  display: "flex",
+  justifyContent: "center",
+  alignItems: "center",
 };

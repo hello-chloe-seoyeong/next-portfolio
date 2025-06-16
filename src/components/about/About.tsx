@@ -5,7 +5,7 @@ import { cn } from "@/lib/utils";
 import { useCardOpenStore } from "@/stores/cardOpen.store";
 import { AnimatedDivProps } from "@/types/motion";
 import * as motion from "motion/react-client";
-import { SiGithub, SiLinkedin, SiMaildotcom } from "react-icons/si";
+import { SiGithub, SiLinkedin, SiMaildotru } from "react-icons/si";
 
 const AboutMotion: React.FC<AnimatedDivProps> = ({
   // layoutId,
@@ -18,33 +18,33 @@ const AboutMotion: React.FC<AnimatedDivProps> = ({
       className={cn([className, "h-full p-5 space-y-5"])}
       {...motionProps}
     >
-      <div className="grid grid-cols-3 w-full h-full gap-5 ">
+      <div className="flex flex-col justify-between md:grid md:grid-cols-3 w-full h-full gap-5 ">
         <div className="col-span-2">
-          <div>
-            <h2 className="text-[50px]">👋 HELLO, there</h2>
-          </div>
-          <div className="text-2xl space-y-4">
+          <h2 className="text-[25px] lg:text-[40px] mb-2 lg:mb-5">
+            👋 HELLO, there
+          </h2>
+          <div className="space-y-5">
             <TypingAnimation
-              className="text-xl font-normal"
-              duration={20}
+              className="text-sm md:text-md font-normal"
+              duration={10}
               delay={1000}
             >
               I&apos;m a frontend developer who enjoys turning creative ideas
               into interactive user experiences.
             </TypingAnimation>
             <TypingAnimation
-              className="text-xl font-normal"
-              duration={20}
-              delay={3000}
+              className="text-sm md:text-md font-normal"
+              duration={10}
+              delay={2500}
             >
               In Korea, I mainly used HTML and CSS to build web pages, but now
               I&apos;ve expanded my skill set to include modern frontend
               technologies like JavaScript, TypeScript, and React.
             </TypingAnimation>
             <TypingAnimation
-              className="text-xl font-normal"
-              duration={20}
-              delay={6000}
+              className="text-sm md:text-md font-normal"
+              duration={10}
+              delay={5000}
             >
               I&apos;m passionate about learning new tools and improving the way
               users interact with the web. My goal is to create intuitive and
@@ -53,8 +53,8 @@ const AboutMotion: React.FC<AnimatedDivProps> = ({
           </div>
         </div>
 
-        <div className="border-l-2 border-black pl-5 flex flex-col justify-end items-end space-y-6">
-          <p className="text-lg">From. Chloe</p>
+        <div className="border-t-2 md:border-l-2 md:border-t-0 border-black pl-5 flex flex-col justify-end items-end md:space-y-6">
+          <p className="mt-4 md:mt-0 text-lg">From. Chloe</p>
 
           <ul className="flex gap-3 items-center">
             <li>
@@ -68,8 +68,12 @@ const AboutMotion: React.FC<AnimatedDivProps> = ({
               </a>
             </li>
             <li>
-              <Button onClick={() => setCardId("Contact")}>
-                <SiMaildotcom className="text-4xl text-black" />
+              <Button
+                onClick={() => setCardId("Contact")}
+                variant={"link"}
+                size={"icon"}
+              >
+                <SiMaildotru className="size-8" />
               </Button>
             </li>
           </ul>

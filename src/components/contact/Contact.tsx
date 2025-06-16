@@ -57,15 +57,15 @@ const Contact: React.FC<AnimatedDivProps> = ({ className }) => {
       initial="hidden"
       animate="visible"
       // layoutId={layoutId}
-      className={cn([className, "h-full font-noto-serif-display"])}
+      className={cn([className, "h-full font-red-hat-display"])}
     >
-      <div className="h-full p-8">
+      <div className="h-full py-8">
         <Form {...form}>
           <form
             onSubmit={form.handleSubmit(onSubmit)}
-            className="w-full flex h-full relative"
+            className="w-full flex flex-col-reverse md:flex-row h-full relative"
           >
-            <div className="w-1/2 pr-4 h-full">
+            <div className="w-full md:w-1/2 md:pr-4 h-full">
               <FormField
                 control={form.control}
                 name="message"
@@ -85,13 +85,13 @@ const Contact: React.FC<AnimatedDivProps> = ({ className }) => {
                 )}
               />
             </div>
-            <div className="w-1/2 pl-4 border-l-2 border-black space-y-5 flex justify-end flex-col">
+            <div className="w-2/3 mb-5 md:mb-0 md:w-1/2 md:pl-4 md:border-l-2 border-black space-y-5 flex justify-end flex-col">
               <FormField
                 control={form.control}
                 name="name"
                 render={({ field }) => (
                   <FormItem>
-                    <FormLabel>Name</FormLabel>
+                    <FormLabel>FROM.</FormLabel>
                     <FormControl>
                       <Input
                         type="text"
@@ -107,7 +107,7 @@ const Contact: React.FC<AnimatedDivProps> = ({ className }) => {
                 name="email"
                 render={({ field }) => (
                   <FormItem>
-                    <FormLabel>Email</FormLabel>
+                    <FormLabel>EMAIL</FormLabel>
                     <FormControl>
                       <Input
                         type="email"
@@ -118,10 +118,20 @@ const Contact: React.FC<AnimatedDivProps> = ({ className }) => {
                   </FormItem>
                 )}
               />
+              <div className="text-xl md:text-right">
+                {new Date().getFullYear()}-{new Date().getMonth()}-
+                {new Date().getDate()}
+              </div>
             </div>
-            <Button type="submit" className={cn("absolute top-0 right-0")}>
-              Send
-            </Button>
+            <div className="absolute -top-4 md:top-0 right-0 bg-[url(/images/stamp.png)] bg-contain bg-no-repeat w-20 h-30 flex justify-end items-end">
+              <Button
+                type="submit"
+                variant={"outline"}
+                className="rounded-none w-[calc(100%-8px)]"
+              >
+                <span>Send It</span>
+              </Button>
+            </div>
           </form>
         </Form>
       </div>
